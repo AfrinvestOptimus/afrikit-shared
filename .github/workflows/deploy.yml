@@ -1,0 +1,59 @@
+name: Publish afrikit-shared to npm
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the main branch
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      # Step 3: Configure npm to use the authentication token
+      - name: Configure npm to use the token
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: yarn install
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+
+      # Step 5: Build the project
+      - name: Build project
+        run: yarn build
+
+      # Step 6: Bump version automatically (patch by default, can be changed to minor/major)
+      - name: Bump version and commit changes
+        run: |
+          yarn version --patch --no-git-tag-version  # Bump version
+          git config --global user.email "developers@afrinvest.com"
+          git config --global user.name "Afrinvest"
+          git add package.json
+          git commit -m "Bump version [skip ci]"
+          git push origin HEAD:main
+
+      # Step 7: Push the tag to GitHub
+      - name: Tag version and push
+        run: |
+          VERSION=$(cat package.json | jq -r '.version')  # Get the new version
+          git tag "v$VERSION"  # Create a new tag
+          git push origin "v$VERSION"  # Push the tag
+
+      # Step 8: Publish the package to npm
+      - name: Publish package
+        run: yarn publish --non-interactive --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
