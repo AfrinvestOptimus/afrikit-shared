@@ -732,7 +732,7 @@ const themeColors = {
     surface: {
       DEFAULT: variables.light['white-to-dark2'],
       gray: neutral.alphaLight.neutralA3,
-      accent: accent.alphaLight.accent2,
+      accent: accent.alphaLight.accentA2,
     },
     contrast: {
       accent: '#FFFFFF',
@@ -746,7 +746,7 @@ const themeColors = {
     surface: {
       DEFAULT: variables.dark['white-to-dark2'],
       gray: neutral.alphaDark.neutralA3,
-      accent: accent.alphaDark.accent2,
+      accent: accent.alphaDark.accentA2,
     },
     contrast: {
       accent: '#FFFFFF',
