@@ -654,6 +654,7 @@ const variables = {
     'dark-to-white': '#131518',
     backdrop: neutral.alphaLight.neutralA8,
     translucent: 'rgba(255,255,255,0.8)',
+    panel: 'rgba(255,255,255,0.8)',
     solid: 'rgba(255,255,255,1)',
   },
   dark: {
@@ -662,6 +663,7 @@ const variables = {
     'dark-to-white': '#FFFFFF',
     backdrop: 'rgba(0,0,0,0.75)',
     translucent: 'rgba(29,29,33,0.7)',
+    panel: 'rgba(29,29,33,0.7)',
     solid: neutral.dark.neutral2,
   },
   alphaLight: {
