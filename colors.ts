@@ -728,24 +728,32 @@ const themeColors = {
   light: {
     'page-bg': variables.light['white-to-dark'],
     'page-bg2': neutral.light.neutral3,
-    surface: variables.light['white-to-dark2'],
-    'surface-gray': neutral.alphaLight.neutralA3,
-    'surface-accent': accent.alphaLight.accent2,
     'token-overlay': variables.light.backdrop,
-    'contrast-accent': '#FFFFFF',
-    'contrast-white': '#FFFFFF',
-    'contrast-black': '#131518',
+    surface: {
+      DEFAULT: variables.light['white-to-dark2'],
+      gray: neutral.alphaLight.neutralA3,
+      accent: accent.alphaLight.accent2,
+    },
+    contrast: {
+      accent: '#FFFFFF',
+      white: '#131518',
+      black: '#FFFFFF',
+    }
   },
   dark: {
     'page-bg': variables.dark['white-to-dark'],
     'page-bg2': neutral.dark.neutral3,
-    surface: variables.dark['white-to-dark2'],
-    'surface-gray': neutral.alphaDark.neutralA3,
-    'surface-accent': accent.alphaDark.accent2,
+    surface: {
+      DEFAULT: variables.dark['white-to-dark2'],
+      gray: neutral.alphaDark.neutralA3,
+      accent: accent.alphaDark.accent2,
+    },
+    contrast: {
+      accent: '#FFFFFF',
+      white: '#FFFFFF',
+      black: '#131518',
+    },
     'token-overlay': variables.dark.backdrop,
-    'contrast-accent': '#FFFFFF',
-    'contrast-white': '#FFFFFF',
-    'contrast-black': '#131518',
   },
 }
 
