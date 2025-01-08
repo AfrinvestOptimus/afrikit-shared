@@ -135,17 +135,19 @@ type Opti = {
   gray: OptiColor
 }
 
+type ColorName = { base: string, alpha: string }
+
 type ColorConfig = {
   accent?: {
     light: ColorSet
     dark: ColorSet
     alphaLight: ColorSet
     alphaDark: ColorSet
+    colorName?: ColorName
   }
 }
 
 const createColors = (config?: ColorConfig) => {
-
 
   const opti: Opti = {
     blue: {
@@ -279,23 +281,21 @@ const createColors = (config?: ColorConfig) => {
     return colorScheme
   }
 
-  const {
-    light: optiBlueLight,
-    dark: optiBlueDark,
-    alphaLight: optiBlueAlphaLight,
-    alphaDark: optiBlueAlphaDark,
-  } = opti.blue
-
   const createAccent = (config?: ColorConfig) => {
-    if (config?.accent) {
-      return config.accent
-    }
+    const {
+      light: optiBlueLight,
+      dark: optiBlueDark,
+      alphaLight: optiBlueAlphaLight,
+      alphaDark: optiBlueAlphaDark,
+    } = config?.accent || opti.blue
+
+    const initialName: ColorName = config?.accent?.colorName || { base: 'optiblue', alpha: 'optiblueA' }
 
     return {
-      light: createColorScheme(optiBlueLight, 'accent', 'optiblue'),
-      dark: createColorScheme(optiBlueDark, 'accent', 'optiblue'),
-      alphaLight: createColorScheme(optiBlueAlphaLight, 'accentA', 'optiblueA'),
-      alphaDark: createColorScheme(optiBlueAlphaDark, 'accentA', 'optiblueA'),
+      light: createColorScheme(optiBlueLight, 'accent', initialName.base),
+      dark: createColorScheme(optiBlueDark, 'accent', initialName.base),
+      alphaLight: createColorScheme(optiBlueAlphaLight, 'accentA', initialName.alpha),
+      alphaDark: createColorScheme(optiBlueAlphaDark, 'accentA', initialName.alpha),
     }
   }
 
