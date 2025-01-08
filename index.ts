@@ -2,14 +2,17 @@
 import radius from './radius'
 import spacing from './spacing'
 import tokens from './tokens'
-import colors from './colors'
+import colors, { ColorConfig } from './colors'
+type ThemeConfig = {
+  colors?: ColorConfig
+}
 
-const config = {
+const config = (options?: ThemeConfig) => ({
   theme: {
     colors: {
       white: '#ffffff',
       black: '#131518',
-      ...colors,
+      ...colors(options?.colors),
     },
     borderRadius: {
       xs: radius.full['1'],
@@ -32,6 +35,6 @@ const config = {
     },
   },
   // plugins: [plugin],
-}
+})
 
 export default config
