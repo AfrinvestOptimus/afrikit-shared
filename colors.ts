@@ -968,5 +968,5 @@ const createColors = (config?: ColorConfig) => {
     dark: darkColors,
   }
 }
-export type { ColorConfig }  // Export the type for use in index.ts
-export default createColors  // Export the function instead of the object
+export type { ColorConfig }
+export default createColors
