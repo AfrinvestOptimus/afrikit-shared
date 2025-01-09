@@ -966,6 +966,7 @@ const createColors = (config?: ColorConfig) => {
   return {
     light: lightColors,
     dark: darkColors,
+    accent
   }
 }
 export type { ColorConfig }
