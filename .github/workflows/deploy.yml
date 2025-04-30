@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: npm install
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
 
       # Step 5: Build the project
       - name: Build project
@@ -43,7 +43,7 @@ jobs:
           git config --global user.name "Afrinvest"
           git add package.json
           git commit -m "Bump version [skip ci]"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push origin HEAD:main
 
       # Step 7: Tag version and push
       - name: Tag version and push
