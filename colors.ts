@@ -365,7 +365,7 @@ const createColors = (config?: ColorConfig) => {
     inverse: string
     bold?: string
     isGray?: boolean
-  }): { inverse: string; DEFAULT: string } => ({
+  }): { inverse: string; DEFAULT: string, muted?: string, placeholder?: string, disabled?: string, bold?: string } => ({
     DEFAULT: primary,
     inverse,
     ...(isGray ? { muted, placeholder, disabled } : { bold }),
@@ -381,7 +381,7 @@ const createColors = (config?: ColorConfig) => {
     alpha: ColorSet
     string: string
     grayDef?: string
-  }): { inverse: string; DEFAULT: string } =>
+  }): { inverse: string; DEFAULT: string, muted?: string, placeholder?: string, disabled?: string, bold?: string } =>
     createColorStateText({
       primary: grayDef || alpha[`${string}A11`],
       muted: color[`${string}11`],
@@ -971,3 +971,7 @@ const createColors = (config?: ColorConfig) => {
 }
 export type { ColorConfig }
 export default createColors
+function createColorStateText(arg0: { primary: string; muted: string; placeholder: string; disabled: string; inverse: string; bold: string; isGray: boolean }): { inverse: string; DEFAULT: string; muted: string; placeholder: string; disabled: string; bold: string } {
+  throw new Error('Function not implemented.')
+}
+
